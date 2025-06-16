@@ -47,13 +47,15 @@ export default function Login() {
 				const axiosError = err as {
 					response?: { data?: { message?: string } }
 				}
-				
+
 				errorMessage =
 					axiosError.response?.data?.message ??
-					"Credenciais inválidas. Por favor, tente novamente."			} else {
-				errorMessage = "Credenciais inválidas. Por favor, tente novamente."
+					"Credenciais inválidas. Por favor, tente novamente."
+			} else {
+				errorMessage =
+					"Credenciais inválidas. Por favor, tente novamente."
 			}
-			
+
 			toast({
 				title: "Erro de Autenticação",
 				description: errorMessage,
@@ -68,7 +70,9 @@ export default function Login() {
 		<div className="mx-auto max-w-md p-6">
 			<Card>
 				{" "}
-				<CardHeader className="space-y-1 bg-gradient-to-r from-gaming-700 to-gaming-900  rounded-t-lg">					<CardTitle className="text-2xl text-center">
+				<CardHeader className="space-y-1 bg-gradient-to-r from-gaming-700 to-gaming-900  rounded-t-lg">
+					{" "}
+					<CardTitle className="text-2xl text-center">
 						Entrar no GameSync
 					</CardTitle>
 					<CardDescription className="text-center">
@@ -77,7 +81,9 @@ export default function Login() {
 				</CardHeader>
 				<CardContent>
 					<form onSubmit={handleSubmit} className="space-y-4">
-						<div className="space-y-2">							<Label htmlFor="username">Nome de usuário</Label>
+						<div className="space-y-2">
+							{" "}
+							<Label htmlFor="username">Nome de usuário</Label>
 							<Input
 								id="username"
 								name="username"
@@ -87,7 +93,9 @@ export default function Login() {
 								required
 							/>
 						</div>
-						<div className="space-y-2">							<Label htmlFor="password">Senha</Label>
+						<div className="space-y-2">
+							{" "}
+							<Label htmlFor="password">Senha</Label>
 							<Input
 								type="password"
 								id="password"
@@ -107,7 +115,9 @@ export default function Login() {
 						</Button>
 					</form>
 				</CardContent>
-				<CardFooter className="flex flex-col space-y-2 border-t pt-6">					<div className="text-sm text-center text-muted-foreground">
+				<CardFooter className="flex flex-col space-y-2 border-t pt-6">
+					{" "}
+					<div className="text-sm text-center text-muted-foreground">
 						Não tem uma conta?{" "}
 						<Link
 							href="/register"

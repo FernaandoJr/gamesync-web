@@ -95,13 +95,15 @@ export function Navigation({
 					<div className="flex items-center space-x-2">
 						{!isLoggedIn ? (
 							<>
-								<ButtonLink									href="/login"
+								<ButtonLink
+									href="/login"
 									variant="outline"
 									size="sm"
 									className="border-gaming-600 text-gaming-600 hover:bg-gaming-50">
 									Entrar
 								</ButtonLink>
-								<ButtonLink									href="/register"
+								<ButtonLink
+									href="/register"
 									variant="default"
 									className="cursor-pointer !text-black"
 									size="sm">
@@ -110,12 +112,14 @@ export function Navigation({
 							</>
 						) : (
 							<>
-								<ButtonLink									href="/dashboard"
+								<ButtonLink
+									href="/dashboard"
 									variant="ghost"
 									size="sm">
 									Painel
 								</ButtonLink>
-								<Button									variant="outline"
+								<Button
+									variant="outline"
 									size="sm"
 									className="cursor-pointer !text-black"
 									onClick={handleSignOut}>
@@ -147,12 +151,14 @@ export function Navigation({
 					<div className="mt-4 flex flex-col space-y-2 px-3">
 						{!isLoggedIn ? (
 							<>
-								<ButtonLink									href="/login"
+								<ButtonLink
+									href="/login"
 									variant="outline"
 									className="w-full justify-center">
 									Entrar
 								</ButtonLink>
-								<ButtonLink									href="/register"
+								<ButtonLink
+									href="/register"
 									variant="default"
 									className="w-full justify-center cursor-pointer !text-black">
 									Cadastre-se
@@ -160,12 +166,14 @@ export function Navigation({
 							</>
 						) : (
 							<>
-								<ButtonLink									href="/dashboard"
+								<ButtonLink
+									href="/dashboard"
 									variant="ghost"
 									className="w-full justify-center">
 									Painel
 								</ButtonLink>
-								<Button									variant="outline"
+								<Button
+									variant="outline"
 									className="w-full justify-center cursor-pointer text-black"
 									onClick={handleSignOut}>
 									Sair

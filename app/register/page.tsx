@@ -55,7 +55,7 @@ export default function Register() {
 				email,
 				password,
 			})
-			
+
 			toast({
 				title: "Sucesso",
 				description:
@@ -79,13 +79,14 @@ export default function Register() {
 				const axiosError = error as {
 					response?: { data?: { message?: string } }
 				}
-				
+
 				errorMessage =
 					axiosError.response?.data?.message ??
-					"Falha ao registrar. Por favor, tente novamente."			} else {
+					"Falha ao registrar. Por favor, tente novamente."
+			} else {
 				errorMessage = "Ocorreu um erro inesperado"
 			}
-			
+
 			toast({
 				title: "Erro de Cadastro",
 				description: errorMessage,
@@ -98,7 +99,9 @@ export default function Register() {
 	return (
 		<div className="mx-auto max-w-md p-6">
 			<Card>
-				<CardHeader className="space-y-1">					<CardTitle className="text-2xl text-center">
+				<CardHeader className="space-y-1">
+					{" "}
+					<CardTitle className="text-2xl text-center">
 						Criar uma Conta GameSync
 					</CardTitle>
 					<CardDescription className="text-center">
@@ -107,7 +110,9 @@ export default function Register() {
 				</CardHeader>
 				<CardContent className="space-y-4">
 					<form onSubmit={handleSubmit} className="space-y-4">
-						<div className="space-y-2">							<Label htmlFor="username">Nome de usuário</Label>
+						<div className="space-y-2">
+							{" "}
+							<Label htmlFor="username">Nome de usuário</Label>
 							<Input
 								id="username"
 								name="username"
@@ -117,7 +122,9 @@ export default function Register() {
 								required
 							/>
 						</div>
-						<div className="space-y-2">							<Label htmlFor="email">Email</Label>
+						<div className="space-y-2">
+							{" "}
+							<Label htmlFor="email">Email</Label>
 							<Input
 								type="email"
 								id="email"
@@ -128,7 +135,9 @@ export default function Register() {
 								required
 							/>
 						</div>
-						<div className="space-y-2">							<Label htmlFor="password">Senha</Label>
+						<div className="space-y-2">
+							{" "}
+							<Label htmlFor="password">Senha</Label>
 							<Input
 								type="password"
 								id="password"
@@ -139,7 +148,9 @@ export default function Register() {
 								required
 							/>
 						</div>
-						<div className="space-y-2">							<Label htmlFor="confirmPassword">
+						<div className="space-y-2">
+							{" "}
+							<Label htmlFor="confirmPassword">
 								Confirmar Senha
 							</Label>
 							<Input
@@ -156,13 +167,17 @@ export default function Register() {
 						<Button
 							type="submit"
 							className="w-full"
-							disabled={isLoading}>							<p className="text-sm text-black">
+							disabled={isLoading}>
+							{" "}
+							<p className="text-sm text-black">
 								{isLoading ? "Criando conta..." : "Cadastrar"}
 							</p>
 						</Button>
 					</form>
 				</CardContent>
-				<CardFooter className="flex flex-col space-y-2 border-t pt-6">					<div className="text-sm text-center text-muted-foreground">
+				<CardFooter className="flex flex-col space-y-2 border-t pt-6">
+					{" "}
+					<div className="text-sm text-center text-muted-foreground">
 						Já tem uma conta?{" "}
 						<Link
 							href="/login"

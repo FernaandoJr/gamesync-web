@@ -81,8 +81,11 @@ export default function Games() {
 
 				const gamesData = await gameService.getAllGames()
 				setGames(gamesData)
-			} catch (err) {				console.error("Erro ao buscar jogos:", err)
-				setError("Falha ao carregar jogos. Por favor, tente novamente mais tarde.")
+			} catch (err) {
+				console.error("Erro ao buscar jogos:", err)
+				setError(
+					"Falha ao carregar jogos. Por favor, tente novamente mais tarde."
+				)
 			} finally {
 				setLoading(false)
 			}
@@ -147,7 +150,9 @@ export default function Games() {
 			<div className="flex items-center justify-center min-h-[60vh]">
 				<div className="text-center">
 					<div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin border-gaming-600 mx-auto"></div>
-					<p className="mt-4 text-gray-600">Carregando seus jogos...</p>
+					<p className="mt-4 text-gray-600">
+						Carregando seus jogos...
+					</p>
 				</div>
 			</div>
 		)
@@ -158,7 +163,8 @@ export default function Games() {
 			<div className="max-w-4xl mx-auto p-6">
 				<div className="bg-red-100 p-4 rounded-md text-red-700 mb-6">
 					<p>{error}</p>
-				</div>				<Button onClick={() => window.location.reload()}>
+				</div>{" "}
+				<Button onClick={() => window.location.reload()}>
 					Tentar Novamente
 				</Button>
 			</div>
@@ -168,7 +174,9 @@ export default function Games() {
 	return (
 		<div className="max-w-6xl mx-auto">
 			<div className="bg-white rounded-lg shadow-md p-6 mb-8">
-				<div className="flex flex-col md:flex-row md:justify-between md:items-center mb-6">					<h1 className="text-3xl font-bold text-gray-900 mb-4 md:mb-0">
+				<div className="flex flex-col md:flex-row md:justify-between md:items-center mb-6">
+					{" "}
+					<h1 className="text-3xl font-bold text-gray-900 mb-4 md:mb-0">
 						Seus Jogos
 					</h1>
 					<ButtonLink href="/games/add" variant="default">
@@ -178,7 +186,9 @@ export default function Games() {
 
 				{/* Search and Filters */}
 				<div className="bg-gray-50 p-4 rounded-lg mb-6">
-					<div className="mb-4">						<label htmlFor="search" className="sr-only">
+					<div className="mb-4">
+						{" "}
+						<label htmlFor="search" className="sr-only">
 							Buscar jogos
 						</label>
 						<div className="relative">
@@ -208,7 +218,9 @@ export default function Games() {
 					</div>
 
 					<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-						<div>							<label
+						<div>
+							{" "}
+							<label
 								htmlFor="status-filter"
 								className="block text-sm font-medium text-gray-700 mb-1">
 								Status
@@ -221,8 +233,12 @@ export default function Games() {
 									setStatusSelected(
 										e.target.value as GameStatus | "ALL"
 									)
-								}>								<option value="ALL">Todos os Status</option>
-								<option value="WISHLIST">Lista de Desejos</option>
+								}>
+								{" "}
+								<option value="ALL">Todos os Status</option>
+								<option value="WISHLIST">
+									Lista de Desejos
+								</option>
 								<option value="PLAYING">Jogando</option>
 								<option value="COMPLETED">Concluído</option>
 								<option value="DROPPED">Abandonado</option>
@@ -239,7 +255,8 @@ export default function Games() {
 										setFavoritesOnly(!favoritesOnly)
 									}
 								/>
-								<div className="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-gaming-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-gaming-600"></div>								<span className="ml-3 text-sm font-medium text-gray-700">
+								<div className="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-gaming-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-gaming-600"></div>{" "}
+								<span className="ml-3 text-sm font-medium text-gray-700">
 									Apenas Favoritos
 								</span>
 							</label>
@@ -261,7 +278,8 @@ export default function Games() {
 								strokeLinejoin="round"
 								strokeWidth={2}
 								d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
-						</svg>						<p className="mt-4 text-lg font-medium text-gray-900">
+						</svg>{" "}
+						<p className="mt-4 text-lg font-medium text-gray-900">
 							Nenhum jogo encontrado
 						</p>
 						<p className="mt-2 text-gray-500">
@@ -318,7 +336,8 @@ export default function Games() {
 											))}
 									</div>
 									<div className="flex items-center justify-between">
-										{/* Extract status styling logic */}										<span
+										{/* Extract status styling logic */}{" "}
+										<span
 											className={getStatusClassName(
 												game.status
 											)}>

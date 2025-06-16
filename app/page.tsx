@@ -37,8 +37,8 @@ export default function Home() {
 						Projetado para jogadores como você
 					</h2>
 					<p className="text-gray-500 sm:text-xl">
-						GameSync ajuda você a gerenciar sua experiência de jogo com
-						recursos poderosos.
+						GameSync ajuda você a gerenciar sua experiência de jogo
+						com recursos poderosos.
 					</p>
 				</div>
 				<div className="space-y-8 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-12 md:space-y-0">
@@ -60,8 +60,8 @@ export default function Home() {
 							Gerenciamento de Biblioteca
 						</h3>
 						<p className="text-gray-500">
-							Acompanhe todos os seus jogos em várias plataformas em
-							uma biblioteca centralizada.
+							Acompanhe todos os seus jogos em várias plataformas
+							em uma biblioteca centralizada.
 						</p>
 					</div>
 					<div>
@@ -78,8 +78,8 @@ export default function Home() {
 							Acompanhamento de Progresso
 						</h3>
 						<p className="text-gray-500">
-							Acompanhe seu progresso nos jogos, horas jogadas
-							e status de conclusão.
+							Acompanhe seu progresso nos jogos, horas jogadas e
+							status de conclusão.
 						</p>
 					</div>
 					<div>
@@ -99,8 +99,8 @@ export default function Home() {
 							Categorias Personalizáveis
 						</h3>
 						<p className="text-gray-500">
-							Organize seus jogos com tags personalizadas, gêneros e
-							plataformas para um melhor gerenciamento.
+							Organize seus jogos com tags personalizadas, gêneros
+							e plataformas para um melhor gerenciamento.
 						</p>
 					</div>
 				</div>

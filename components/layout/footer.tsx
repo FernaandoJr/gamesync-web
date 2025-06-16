@@ -16,13 +16,16 @@ export function Footer({
 							<span className="self-center text-xl font-semibold whitespace-nowrap text-gaming-700">
 								GameSync
 							</span>
-						</Link>						<p className="mt-2 max-w-md text-sm text-gray-500">
-							Gerencie sua biblioteca de jogos em várias plataformas
-							em um só lugar.
+						</Link>{" "}
+						<p className="mt-2 max-w-md text-sm text-gray-500">
+							Gerencie sua biblioteca de jogos em várias
+							plataformas em um só lugar.
 						</p>
 					</div>
 					<div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
-						<div>							<h2 className="mb-6 text-sm font-semibold uppercase text-gray-800">
+						<div>
+							{" "}
+							<h2 className="mb-6 text-sm font-semibold uppercase text-gray-800">
 								Recursos
 							</h2>
 							<ul className="text-gray-600">
@@ -42,7 +45,9 @@ export function Footer({
 								</li>
 							</ul>
 						</div>
-						<div>							<h2 className="mb-6 text-sm font-semibold uppercase text-gray-800">
+						<div>
+							{" "}
+							<h2 className="mb-6 text-sm font-semibold uppercase text-gray-800">
 								Siga-nos
 							</h2>
 							<ul className="text-gray-600">
@@ -56,23 +61,31 @@ export function Footer({
 									</a>
 								</li>
 								<li>
-									<a href="https://discord.com" className="hover:underline">
+									<a
+										href="https://discord.com"
+										className="hover:underline">
 										Discord
 									</a>
 								</li>
 							</ul>
 						</div>
-						<div>							<h2 className="mb-6 text-sm font-semibold uppercase text-gray-800">
+						<div>
+							{" "}
+							<h2 className="mb-6 text-sm font-semibold uppercase text-gray-800">
 								Legal
 							</h2>
 							<ul className="text-gray-600">
 								<li className="mb-4">
-									<Link href="/privacy" className="hover:underline">
+									<Link
+										href="/privacy"
+										className="hover:underline">
 										Política de Privacidade
 									</Link>
 								</li>
 								<li>
-									<Link href="/terms" className="hover:underline">
+									<Link
+										href="/terms"
+										className="hover:underline">
 										Termos &amp; Condições
 									</Link>
 								</li>
@@ -81,7 +94,9 @@ export function Footer({
 					</div>
 				</div>
 				<hr className="my-6 border-gray-200 sm:mx-auto lg:my-8" />
-				<div className="sm:flex sm:items-center sm:justify-between">					<span className="text-sm text-gray-500 sm:text-center">
+				<div className="sm:flex sm:items-center sm:justify-between">
+					{" "}
+					<span className="text-sm text-gray-500 sm:text-center">
 						© 2025{" "}
 						<a
 							href="https://github.com/FernaandoJr/gamesync"
@@ -90,7 +105,9 @@ export function Footer({
 						</a>
 						. Todos os Direitos Reservados.
 					</span>
-					<div className="flex mt-4 space-x-6 sm:justify-center sm:mt-0">						<a
+					<div className="flex mt-4 space-x-6 sm:justify-center sm:mt-0">
+						{" "}
+						<a
 							href="https://facebook.com"
 							className="text-gray-500 hover:text-gaming-700">
 							<span className="sr-only">Facebook</span>
@@ -105,7 +122,8 @@ export function Footer({
 									clipRule="evenodd"
 								/>
 							</svg>
-						</a>						<a
+						</a>{" "}
+						<a
 							href="https://instagram.com"
 							className="text-gray-500 hover:text-gaming-700">
 							<span className="sr-only">Instagram</span>
@@ -120,7 +138,8 @@ export function Footer({
 									clipRule="evenodd"
 								/>
 							</svg>
-						</a>						<a
+						</a>{" "}
+						<a
 							href="https://twitter.com"
 							className="text-gray-500 hover:text-gaming-700">
 							<span className="sr-only">Twitter</span>
