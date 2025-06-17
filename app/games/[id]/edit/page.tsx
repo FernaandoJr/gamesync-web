@@ -40,16 +40,15 @@ export default function EditGame() {
 				}
 
 				if (!gameId) {
-					setError("No game ID provided")
+					setError("ID do jogo não fornecido")
 					setIsFetching(false)
 					return
 				}
 
 				const gameData = await gameService.getGameById(gameId)
 				setGame(gameData)
-			} catch (err) {
-				console.error("Error fetching game details:", err)
-				setError("Failed to load game details. Please try again later.")
+			} catch (err) {				console.error("Erro ao buscar detalhes do jogo:", err)
+				setError("Falha ao carregar detalhes do jogo. Por favor, tente novamente mais tarde.")
 			} finally {
 				setIsFetching(false)
 			}
@@ -63,20 +62,19 @@ export default function EditGame() {
 
 		try {
 			if (!gameId) {
-				throw new Error("No game ID provided")
+				throw new Error("ID do jogo não fornecido")
 			}
 
 			const updatedGame = await gameService.updateGame(gameId, data)
 			toast({
-				title: "Game updated",
-				description: "Game details have been updated successfully.",
+				title: "Jogo atualizado",
+				description: "Detalhes do jogo foram atualizados com sucesso.",
 			})
 			router.push(`/games/${updatedGame.id}`)
-		} catch (err) {
-			console.error("Error updating game:", err)
+		} catch (err) {			console.error("Erro ao atualizar jogo:", err)
 			toast({
-				title: "Update failed",
-				description: "Failed to update game. Please try again.",
+				title: "Falha na atualização",
+				description: "Falha ao atualizar jogo. Por favor, tente novamente.",
 				variant: "destructive",
 			})
 		} finally {
@@ -89,7 +87,7 @@ export default function EditGame() {
 			<div className="flex items-center justify-center min-h-[60vh]">
 				<div className="text-center">
 					<div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin border-gaming-600 mx-auto"></div>
-					<p className="mt-4 text-gray-600">Loading game data...</p>
+					<p className="mt-4 text-gray-600">Carregando dados do jogo...</p>
 				</div>
 			</div>
 		)
@@ -99,12 +97,12 @@ export default function EditGame() {
 		return (
 			<div className="max-w-4xl mx-auto p-6">
 				<div className="bg-red-100 p-4 rounded-md text-red-700 mb-6">
-					<p>{error ?? "Game not found"}</p>
+					<p>{error ?? "Jogo não encontrado"}</p>
 				</div>
 				<button
 					className="px-4 py-2 bg-gaming-600 text-white rounded-md hover:bg-gaming-700"
 					onClick={() => router.push("/games")}>
-					Return to Games
+					Voltar para Jogos
 				</button>
 			</div>
 		)
@@ -112,10 +110,9 @@ export default function EditGame() {
 
 	return (
 		<div className="max-w-4xl mx-auto my-8 px-4">
-			<div className="mb-6">
-				<h1 className="text-3xl font-bold text-gray-900">Edit Game</h1>
+			<div className="mb-6">				<h1 className="text-3xl font-bold text-gray-900">Editar Jogo</h1>
 				<p className="text-gray-600 mt-2">
-					Update the details for {game.name}.
+					Atualize os detalhes para {game.name}.
 				</p>
 			</div>
 

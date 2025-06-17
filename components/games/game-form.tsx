@@ -30,6 +30,7 @@ export default function GameForm({
 		name: "",
 		description: "",
 		developer: "",
+		imageUrl: "",
 		hoursPlayed: 0,
 		favorite: false,
 		genres: [],
@@ -52,6 +53,7 @@ export default function GameForm({
 				name: game.name,
 				description: game.description || "",
 				developer: game.developer || "",
+				imageUrl: game.imageUrl || "",
 				hoursPlayed: game.hoursPlayed || 0,
 				favorite: game.favorite,
 				genres: game.genres || [],
@@ -139,13 +141,12 @@ export default function GameForm({
 	// Form validation
 	const validateForm = () => {
 		const newErrors: Record<string, string> = {}
-
 		if (!formData.name || !formData.name.trim()) {
-			newErrors.name = "Name is required"
+			newErrors.name = "Nome é obrigatório"
 		}
 
 		if (formData.hoursPlayed && formData.hoursPlayed < 0) {
-			newErrors.hoursPlayed = "Hours played must be a positive number"
+			newErrors.hoursPlayed = "Horas jogadas deve ser um número positivo"
 		}
 
 		setErrors(newErrors)
@@ -161,29 +162,26 @@ export default function GameForm({
 
 		await onSubmit(formData)
 	}
-
 	// Helper function for button text
 	const getButtonText = () => {
 		if (isLoading) {
-			return "Saving..."
+			return "Salvando..."
 		}
-		return isEditing ? "Update Game" : "Add Game"
+		return isEditing ? "Atualizar Jogo" : "Adicionar Jogo"
 	}
 
 	return (
 		<form onSubmit={handleSubmit} className="space-y-6">
 			{/* Basic Information */}
-			<div className="bg-white p-6 rounded-lg shadow-md">
-				<h2 className="text-xl font-semibold mb-4 pb-2 border-b">
-					Game Information
+			<div className="bg-white p-6 rounded-lg shadow-md">				<h2 className="text-xl font-semibold mb-4 pb-2 border-b">
+					Informações do Jogo
 				</h2>
 
 				<div className="space-y-4">
-					<div>
-						<label
+					<div>						<label
 							htmlFor="name"
 							className="block text-sm font-medium text-gray-700 mb-1">
-							Game Name <span className="text-red-500">*</span>
+							Nome do Jogo <span className="text-red-500">*</span>
 						</label>
 						<input
 							type="text"
@@ -196,16 +194,14 @@ export default function GameForm({
 									? "border-red-500"
 									: "border-gray-300"
 							}`}
-							placeholder="Enter game name"
+							placeholder="Entre com o nome do jogo"
 						/>
 						{errors.name && (
 							<p className="mt-1 text-sm text-red-500">
 								{errors.name}
 							</p>
 						)}
-					</div>
-
-					<div>
+					</div>					<div>
 						<label
 							htmlFor="developer"
 							className="block text-sm font-medium text-gray-700 mb-1">
@@ -218,7 +214,24 @@ export default function GameForm({
 							value={formData.developer}
 							onChange={handleChange}
 							className="w-full p-2 border border-gray-300 rounded-md"
-							placeholder="Enter developer name"
+							placeholder="Entre com o nome do desenvolvedor"
+						/>
+					</div>
+
+					<div>
+						<label
+							htmlFor="imageUrl"
+							className="block text-sm font-medium text-gray-700 mb-1">
+							URL da Imagem
+						</label>
+						<input
+							type="text"
+							id="imageUrl"
+							name="imageUrl"
+							value={formData.imageUrl}
+							onChange={handleChange}
+							className="w-full p-2 border border-gray-300 rounded-md"
+							placeholder="https://exemplo.com/imagem-do-jogo.jpg"
 						/>
 					</div>
 
@@ -235,51 +248,52 @@ export default function GameForm({
 							onChange={handleChange}
 							rows={4}
 							className="w-full p-2 border border-gray-300 rounded-md"
-							placeholder="Enter game description"
+							placeholder="Entre com a descrição do jogo"
 						/>
 					</div>
 
 					<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-						<div>
-							<label
+						<div>							<label
 								htmlFor="status"
 								className="block text-sm font-medium text-gray-700 mb-1">
-								Game Status
+								Status do Jogo
 							</label>{" "}
 							<select
 								id="status"
 								name="status"
 								value={formData.status}
 								onChange={handleChange}
-								className="w-full p-2 border border-gray-300 rounded-md bg-white">
-								<option
+								className="w-full p-2 border border-gray-300 rounded-md bg-white">								<option
 									value={GameStatus.WISHLIST}
 									className="bg-purple-500 text-white">
-									Wishlist
+									Lista de Desejos
 								</option>
 								<option
 									value={GameStatus.PLAYING}
 									className="bg-blue-500 text-white">
-									Playing
+									Jogando
 								</option>
 								<option
 									value={GameStatus.COMPLETED}
 									className="bg-green-500 text-white">
-									Completed
-								</option>
-								<option
+									Concluído
+								</option>								<option
 									value={GameStatus.DROPPED}
 									className="bg-red-500 text-white">
-									Dropped
+									Abandonado
+								</option>
+								<option
+									value={GameStatus.NOT_STARTED}
+									className="bg-gray-500 text-white">
+									Não Iniciado
 								</option>
 							</select>
 						</div>
 
-						<div>
-							<label
+						<div>							<label
 								htmlFor="hoursPlayed"
 								className="block text-sm font-medium text-gray-700 mb-1">
-								Hours Played
+								Horas Jogadas
 							</label>
 							<input
 								type="number"

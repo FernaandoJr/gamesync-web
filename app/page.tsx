@@ -115,7 +115,9 @@ export default function Home() {
 						Crie sua conta agora e comece a organizar sua biblioteca
 						de jogos.
 					</p>
-					<ButtonLink href="/register" className="text-center">
+					<ButtonLink
+						href="/register"
+						className="text-center text-black">
 						Cadastre-se gratuitamente
 					</ButtonLink>
 				</div>

@@ -31,34 +31,30 @@ export default function AddGame() {
 
 		try {
 			// Since we're adding a new game, we need to ensure we have a name property
-			if (!data.name) {
-				toast({
-					title: "Validation Error",
-					description: "Game name is required",
+			if (!data.name) {				toast({
+					title: "Erro de Validação",
+					description: "Nome do jogo é obrigatório",
 					variant: "destructive",
 				})
-				throw new Error("Game name is required")
+				throw new Error("Nome do jogo é obrigatório")
 			}
 
 			// Log the data being sent to the server to help with debugging
 			console.log("Submitting game data:", JSON.stringify(data))
 
-			// Cast to GameCreateDTO since we know we're creating a new game
-			const gameData = data as GameCreateDTO
+			// Cast to GameCreateDTO since we know we're creating a new game			const gameData = data as GameCreateDTO
 			const newGame = await gameService.createGame(gameData)
-
+			
 			toast({
-				title: "Success",
-				description: "Game created successfully!",
+				title: "Sucesso",
+				description: "Jogo criado com sucesso!",
 				variant: "default",
 			})
 
 			router.push(`/games/${newGame.id}`)
 		} catch (err) {
-			console.error("Error creating game:", err)
-
-			// Get more detailed error information
-			let errorMessage = "Failed to create game. Please try again."
+			console.error("Erro ao criar jogo:", err)			// Get more detailed error information
+			let errorMessage = "Falha ao criar jogo. Por favor, tente novamente."
 			if (err instanceof Error) {
 				errorMessage = err.message
 			} else if (err && typeof err === "object" && "response" in err) {
@@ -70,7 +66,7 @@ export default function AddGame() {
 			}
 
 			toast({
-				title: "Error",
+				title: "Erro",
 				description: errorMessage,
 				variant: "destructive",
 			})
@@ -80,14 +76,13 @@ export default function AddGame() {
 	}
 
 	return (
-		<div className="max-w-4xl mx-auto my-8 px-4">
-			<div className="mb-6">
+		<div className="max-w-4xl mx-auto my-8 px-4">			<div className="mb-6">
 				<h1 className="text-3xl font-bold text-gray-900">
-					Add New Game
+					Adicionar Novo Jogo
 				</h1>
 				<p className="text-gray-600 mt-2">
-					Create a new game in your library. Fill in the details
-					below.
+					Crie um novo jogo em sua biblioteca. Preencha os detalhes
+					abaixo.
 				</p>
 			</div>{" "}
 			<GameForm

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
+import Image from "next/image"
 import { Button, ButtonLink } from "../../components/ui/button"
 import { gameService, Game, GameStatus } from "../../lib/game-service"
 // Import formatDate when needed for displaying dates
@@ -34,6 +35,8 @@ const getStatusText = (status: GameStatus): string => {
 			return "Lista de Desejos"
 		case "DROPPED":
 			return "Abandonado"
+		case "NOT_STARTED":
+			return "Não Iniciado"
 		default:
 			return status
 	}
@@ -301,12 +304,21 @@ export default function Games() {
 							<div
 								key={game.id}
 								className="border border-gray-200 rounded-lg overflow-hidden hover:shadow-md transition-shadow">
-								{" "}
-								<div className="h-40 bg-gradient-to-r from-gaming-600 to-gaming-800 flex items-center justify-center">
-									{/* Game image would go here if available */}
-									<span className="text-white font-bold text-4xl bg-gaming-700/50 w-20 h-20 flex items-center justify-center rounded-full border-2 border-white/30">
-										{game.name.substring(0, 1)}
-									</span>
+								{" "}								<div className="h-40 bg-gradient-to-r from-gaming-600 to-gaming-800 flex items-center justify-center relative">
+									{game.imageUrl ? (
+										<Image 
+											src={game.imageUrl} 
+											alt={`Capa de ${game.name}`}
+											className="object-cover"
+											fill 
+											sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+											priority={false}
+										/>
+									) : (
+										<span className="text-white font-bold text-4xl bg-gaming-700/50 w-20 h-20 flex items-center justify-center rounded-full border-2 border-white/30">
+											{game.name.substring(0, 1)}
+										</span>
+									)}
 								</div>
 								<div className="p-4">
 									<h3 className="font-bold text-xl mb-1 text-gaming-800">

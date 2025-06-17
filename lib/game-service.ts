@@ -5,6 +5,7 @@ export enum GameStatus {
 	PLAYING = "PLAYING",
 	COMPLETED = "COMPLETED",
 	DROPPED = "DROPPED",
+	NOT_STARTED = "NOT_STARTED",
 }
 
 export enum GameSource {
@@ -17,6 +18,7 @@ export interface Game {
 	description?: string
 	developer?: string
 	userId: string
+	imageUrl?: string
 	hoursPlayed?: number
 	favorite: boolean
 	genres?: string[]
@@ -33,6 +35,7 @@ export interface GameCreateDTO {
 	name: string
 	description?: string
 	developer?: string
+	imageUrl?: string
 	hoursPlayed?: number
 	favorite: boolean
 	genres?: string[]
@@ -46,6 +49,7 @@ export interface GameUpdateDTO {
 	name?: string
 	description?: string
 	developer?: string
+	imageUrl?: string
 	hoursPlayed?: number
 	favorite?: boolean
 	genres?: string[]

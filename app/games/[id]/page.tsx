@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { useParams, useRouter } from "next/navigation"
+import Image from "next/image"
 import { gameService, Game, GameStatus } from "../../../lib/game-service"
 import { Button, ButtonLink } from "../../../components/ui/button"
 import { useToast } from "../../../components/ui/use-toast"
@@ -40,16 +41,15 @@ export default function GameDetails() {
 				}
 
 				if (!gameId) {
-					setError("No game ID provided")
+					setError("ID do jogo não fornecido")
 					setLoading(false)
 					return
 				}
 
 				const gameData = await gameService.getGameById(gameId)
 				setGame(gameData)
-			} catch (err) {
-				console.error("Error fetching game details:", err)
-				setError("Failed to load game details. Please try again later.")
+			} catch (err) {				console.error("Erro ao buscar detalhes do jogo:", err)
+				setError("Falha ao carregar detalhes do jogo. Por favor, tente novamente mais tarde.")
 			} finally {
 				setLoading(false)
 			}
@@ -60,25 +60,23 @@ export default function GameDetails() {
 	const handleDeleteGame = async () => {
 		if (!game) return
 
-		if (
-			window.confirm(
-				"Are you sure you want to delete this game? This action cannot be undone."
+		if (			window.confirm(
+				"Tem certeza que deseja excluir este jogo? Esta ação não pode ser desfeita."
 			)
 		) {
 			try {
 				await gameService.deleteGame(game.id)
-				toast({
-					title: "Game deleted",
-					description: "The game has been successfully removed",
-				})
+			toast({
+				title: "Jogo excluído",
+				description: "O jogo foi removido com sucesso",
+			})
 				router.push("/games")
-			} catch (err) {
-				console.error("Error deleting game:", err)
-				toast({
-					title: "Delete failed",
-					description: "Failed to delete game. Please try again.",
-					variant: "destructive",
-				})
+			} catch (err) {			console.error("Erro ao excluir jogo:", err)
+			toast({
+				title: "Falha na exclusão",
+				description: "Falha ao excluir jogo. Por favor, tente novamente.",
+				variant: "destructive",
+			})
 			}
 		}
 	}
@@ -92,18 +90,17 @@ export default function GameDetails() {
 			setGame(updatedGame)
 			toast({
 				title: game.favorite
-					? "Removed from favorites"
-					: "Added to favorites",
-				description: `${game.name} has been ${
-					game.favorite ? "removed from" : "added to"
-				} your favorites`,
+					? "Removido dos favoritos"
+					: "Adicionado aos favoritos",
+				description: `${game.name} foi ${
+					game.favorite ? "removido dos" : "adicionado aos"
+				} seus favoritos`,
 			})
-		} catch (err) {
-			console.error("Error updating favorite status:", err)
+		} catch (err) {			console.error("Erro ao atualizar status de favorito:", err)
 			toast({
-				title: "Update failed",
+				title: "Falha na atualização",
 				description:
-					"Failed to update favorite status. Please try again.",
+					"Falha ao atualizar status de favorito. Por favor, tente novamente.",
 				variant: "destructive",
 			})
 		}
@@ -113,9 +110,8 @@ export default function GameDetails() {
 		return (
 			<div className="flex items-center justify-center min-h-[60vh]">
 				<div className="text-center">
-					<div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin border-gaming-600 mx-auto"></div>
-					<p className="mt-4 text-gray-600">
-						Loading game details...
+					<div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin border-gaming-600 mx-auto"></div>					<p className="mt-4 text-gray-600">
+						Carregando detalhes do jogo...
 					</p>
 				</div>
 			</div>
@@ -126,38 +122,42 @@ export default function GameDetails() {
 		return (
 			<div className="max-w-4xl mx-auto p-6">
 				<div className="bg-red-100 p-4 rounded-md text-red-700 mb-6">
-					<p>{error ?? "Game not found"}</p>
+					<p>{error ?? "Jogo não encontrado"}</p>
 				</div>{" "}
 				<Button onClick={() => router.push("/games")}>
 					Return to Games
 				</Button>
 			</div>
 		)
-	} // Using imported formatDate utility from lib/utils.ts
-	// Map status to display text and style with vibrant colors
+	} // Using imported formatDate utility from lib/utils.ts	// Map status to display text and style with vibrant colors
 	const getStatusInfo = (status: GameStatus) => {
 		const statusMap: Record<
 			GameStatus,
 			{ label: string; bgColor: string; textColor: string }
 		> = {
 			[GameStatus.COMPLETED]: {
-				label: "Completed",
+				label: "Concluído",
 				bgColor: "bg-green-500",
 				textColor: "text-white",
 			},
 			[GameStatus.PLAYING]: {
-				label: "Playing",
+				label: "Jogando",
 				bgColor: "bg-blue-500",
 				textColor: "text-white",
 			},
 			[GameStatus.WISHLIST]: {
-				label: "Wishlist",
+				label: "Lista de Desejos",
 				bgColor: "bg-purple-500",
 				textColor: "text-white",
 			},
 			[GameStatus.DROPPED]: {
-				label: "Dropped",
+				label: "Abandonado",
 				bgColor: "bg-red-500",
+				textColor: "text-white",
+			},
+			[GameStatus.NOT_STARTED]: {
+				label: "Não Iniciado",
+				bgColor: "bg-gray-500",
 				textColor: "text-white",
 			},
 		}
@@ -174,19 +174,31 @@ export default function GameDetails() {
 
 	return (
 		<div className="max-w-5xl mx-auto my-8 px-4">
-			<div className="bg-white rounded-lg shadow-md overflow-hidden">
-				{/* Header section */}
+			<div className="bg-white rounded-lg shadow-md overflow-hidden">				{/* Header section */}
 				<div className="p-6 bg-gradient-to-r from-gaming-700 to-gaming-900 text-white">
 					<div className="flex justify-between items-start">
-						<div>
-							<h1 className="text-3xl font-bold mb-2">
-								{game.name}
-							</h1>
-							{game.developer && (
-								<p className="text-gray-200 text-lg">
-									{game.developer}
-								</p>
+						<div className="flex gap-4">
+							{game.imageUrl && (
+								<div className="relative h-24 w-24 rounded-lg overflow-hidden">
+									<Image
+										src={game.imageUrl}
+										alt={`Capa de ${game.name}`}
+										fill
+										className="object-cover"
+										sizes="96px"
+									/>
+								</div>
 							)}
+							<div>
+								<h1 className="text-3xl font-bold mb-2">
+									{game.name}
+								</h1>
+								{game.developer && (
+									<p className="text-gray-200 text-lg">
+										{game.developer}
+									</p>
+								)}
+							</div>
 						</div>
 
 						<div className="flex space-x-3">
@@ -196,11 +208,10 @@ export default function GameDetails() {
 									game.favorite
 										? "bg-yellow-500 text-white"
 										: "bg-white/10 text-white hover:bg-white/20"
-								} transition`}
-								aria-label={
+								} transition`}								aria-label={
 									game.favorite
-										? "Remove from favorites"
-										: "Add to favorites"
+										? "Remover dos favoritos"
+										: "Adicionar aos favoritos"
 								}>
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
@@ -225,26 +236,24 @@ export default function GameDetails() {
 				<div className="p-6">
 					<div className="grid grid-cols-1 md:grid-cols-3 gap-6">
 						{/* Left column */}
-						<div className="col-span-2">
-							<section className="mb-8">
+						<div className="col-span-2">							<section className="mb-8">
 								<h2 className="text-xl font-semibold mb-3 text-gray-800">
-									Description
+									Descrição
 								</h2>
 								<p className="text-gray-700 whitespace-pre-line">
 									{" "}
 									{game.description ??
-										"No description available."}
+										"Sem descrição disponível."}
 								</p>
 							</section>
 
 							<section className="mb-8">
 								<h2 className="text-xl font-semibold mb-3 text-gray-800">
-									Details
+									Detalhes
 								</h2>
 								<div className="bg-gray-50 p-4 rounded-lg space-y-3">
 									<div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-										<div>
-											<h3 className="text-sm font-medium text-gray-500">
+										<div>											<h3 className="text-sm font-medium text-gray-500">
 												Status
 											</h3>
 											<span
@@ -253,26 +262,23 @@ export default function GameDetails() {
 											</span>
 										</div>
 										{game.hoursPlayed !== undefined && (
-											<div>
-												<h3 className="text-sm font-medium text-gray-500">
-													Hours Played
+											<div>												<h3 className="text-sm font-medium text-gray-500">
+													Horas Jogadas
 												</h3>
 												<p className="mt-1 text-gray-900">
-													{game.hoursPlayed} hours
+													{game.hoursPlayed} horas
 												</p>
 											</div>
 										)}
-										<div>
-											<h3 className="text-sm font-medium text-gray-500">
-												Source
+										<div>											<h3 className="text-sm font-medium text-gray-500">
+												Fonte
 											</h3>
 											<p className="mt-1 text-gray-900">
 												{game.source}
 											</p>
 										</div>{" "}
-										<div>
-											<h3 className="text-sm font-medium text-gray-500">
-												Added On
+										<div>											<h3 className="text-sm font-medium text-gray-500">
+												Adicionado Em
 											</h3>
 											<p className="mt-1 text-gray-900">
 												{" "}
@@ -290,9 +296,8 @@ export default function GameDetails() {
 
 						{/* Right column */}
 						<div>
-							<section className="mb-8">
-								<h2 className="text-xl font-semibold mb-3 text-gray-800">
-									Tags & Categories
+							<section className="mb-8">								<h2 className="text-xl font-semibold mb-3 text-gray-800">
+									Tags & Categorias
 								</h2>
 								<div className="bg-gray-50 p-4 rounded-lg">
 									{game.genres && game.genres.length > 0 && (
@@ -331,9 +336,8 @@ export default function GameDetails() {
 
 									{game.platforms &&
 										game.platforms.length > 0 && (
-											<div>
-												<h3 className="text-sm font-medium text-gray-500 mb-2">
-													Platforms
+											<div>												<h3 className="text-sm font-medium text-gray-500 mb-2">
+													Plataformas
 												</h3>{" "}
 												<div className="flex flex-wrap gap-2">
 													{game.platforms.map(
@@ -354,20 +358,19 @@ export default function GameDetails() {
 					</div>
 				</div>{" "}
 				{/* Actions footer */}
-				<div className="border-t border-gray-200 p-6 bg-gray-50 flex flex-wrap gap-4">
-					<ButtonLink href="/games" variant="outline">
-						Back to Games
+				<div className="border-t border-gray-200 p-6 bg-gray-50 flex flex-wrap gap-4">					<ButtonLink href="/games" variant="outline">
+						Voltar para Jogos
 					</ButtonLink>
 					<ButtonLink
 						href={`/games/${game.id}/edit`}
 						variant="secondary">
-						Edit Game
+						Editar Jogo
 					</ButtonLink>
 					<Button
 						variant="destructive"
 						onClick={handleDeleteGame}
 						className="ml-auto cursor-pointer">
-						Delete Game
+						Excluir Jogo
 					</Button>
 				</div>
 			</div>
