@@ -178,14 +178,14 @@ export default function GameDetails() {
 				<div className="p-6 bg-gradient-to-r from-gaming-700 to-gaming-900 text-white">
 					<div className="flex justify-between items-start">
 						<div className="flex gap-4">
-							{game.imageUrl && (
-								<div className="relative h-24 w-24 rounded-lg overflow-hidden">
+							{game.imageUrl && (								<div className="relative h-24 w-24 rounded-lg overflow-hidden">
 									<Image
 										src={game.imageUrl}
 										alt={`Capa de ${game.name}`}
 										fill
 										className="object-cover"
 										sizes="96px"
+										unoptimized={true}
 									/>
 								</div>
 							)}

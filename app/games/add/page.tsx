@@ -40,9 +40,8 @@ export default function AddGame() {
 			}
 
 			// Log the data being sent to the server to help with debugging
-			console.log("Submitting game data:", JSON.stringify(data))
-
-			// Cast to GameCreateDTO since we know we're creating a new game			const gameData = data as GameCreateDTO
+			console.log("Submitting game data:", JSON.stringify(data))			// Cast to GameCreateDTO since we know we're creating a new game
+			const gameData = data as GameCreateDTO
 			const newGame = await gameService.createGame(gameData)
 			
 			toast({

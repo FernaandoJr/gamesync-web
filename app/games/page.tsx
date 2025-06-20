@@ -304,8 +304,7 @@ export default function Games() {
 							<div
 								key={game.id}
 								className="border border-gray-200 rounded-lg overflow-hidden hover:shadow-md transition-shadow">
-								{" "}								<div className="h-40 bg-gradient-to-r from-gaming-600 to-gaming-800 flex items-center justify-center relative">
-									{game.imageUrl ? (
+								{" "}								<div className="h-40 bg-gradient-to-r from-gaming-600 to-gaming-800 flex items-center justify-center relative">									{game.imageUrl ? (
 										<Image 
 											src={game.imageUrl} 
 											alt={`Capa de ${game.name}`}
@@ -313,6 +312,7 @@ export default function Games() {
 											fill 
 											sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
 											priority={false}
+											unoptimized={true}
 										/>
 									) : (
 										<span className="text-white font-bold text-4xl bg-gaming-700/50 w-20 h-20 flex items-center justify-center rounded-full border-2 border-white/30">

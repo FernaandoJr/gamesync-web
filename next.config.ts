@@ -4,19 +4,26 @@ const nextConfig: NextConfig = {
   /* config options here */
   images: {
     domains: [
-      'example.com',       // Exemplo fornecido no JSON
-      'localhost',         // Para desenvolvimento local
-      'res.cloudinary.com', // Para Cloudinary
-      'images.unsplash.com', // Para Unsplash
-      'i.imgur.com',       // Para Imgur
-      'raw.githubusercontent.com', // GitHub
+      'example.com',      
+      'localhost',         
+      'res.cloudinary.com', 
+      'images.unsplash.com', 
+      'i.imgur.com',       
+      'raw.githubusercontent.com',
+      'google.com',        // Adicionando google.com
+      'GOOGLE.COM',        // Adicionando versão em maiúsculas
     ],
     remotePatterns: [
       {
         protocol: 'https',
         hostname: '**',
       },
+      {
+        protocol: 'http',
+        hostname: '**',
+      },
     ],
+    unoptimized: true,     // Permite imagens não otimizadas de qualquer origem
   },
 };
 
